@@ -2,12 +2,14 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Challenge1 from "./app/challenge-1/Challenge1";
 import { Home } from "./app/Home";
+import Challenge2 from "./app/challenge-2/Challenge2";
 
 function App() {
   return (
     <div>
       <Routes>
         <Route path="/challenge1" element={<Challenge1 />} />
+        <Route path="/challenge2" element={<Challenge2 />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </div>
