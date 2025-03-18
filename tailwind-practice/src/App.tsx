@@ -6,7 +6,7 @@ import Challenge2 from "./app/challenge-2/Challenge2";
 
 function App() {
   return (
-    <div>
+    <div className="w-full h-full">
       <Routes>
         <Route path="/challenge1" element={<Challenge1 />} />
         <Route path="/challenge2" element={<Challenge2 />} />

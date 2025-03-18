@@ -7,63 +7,100 @@ import Gallery5 from "../../svg/item5.svg?react";
 import Gallery6 from "../../svg/item6.svg?react";
 import Gallery7 from "../../svg/item7.svg?react";
 import Gallery8 from "../../svg/item8.svg?react";
+import { useMediaQuery } from "react-responsive";
+import { useState } from "react";
+import { default as cn } from "clsx";
 
 export default function Challenge2() {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 600px)",
+  });
+  const [menuOpenState, setMenuOpenState] = useState<boolean>(false);
+  const changeMenuOpenStatus = () => setMenuOpenState(!menuOpenState);
+
   return (
-    <div className="px-[10%]">
-      <Header />
-      <Gallery />
-    </div>
+    <>
+      {menuOpenState && <MenuOpenBackGround />}
+      <div className={cn(isDesktopOrLaptop ? "px-[2%]" : "px-[8%]")}>
+        <Header
+          isDesktopOrLaptop={isDesktopOrLaptop}
+          changeMenuOpenStatus={changeMenuOpenStatus}
+        />
+        <Gallery isDesktopOrLaptop={isDesktopOrLaptop} />
+      </div>
+    </>
   );
 }
 
-function Header() {
+function MenuOpenBackGround() {
+  return <div className="bg-black fixed opacity-80 w-full h-full z-10"></div>;
+}
+
+function Header({
+  isDesktopOrLaptop,
+  changeMenuOpenStatus,
+}: {
+  isDesktopOrLaptop: boolean;
+  changeMenuOpenStatus: Function;
+}) {
+  const style = isDesktopOrLaptop
+    ? "flex justify-between w-full py-[2%]"
+    : "flex justify-between w-full py-[4%]";
+
   return (
-    <div className="flex justify-between w-full py-[2%]">
-      <p className="text-md font-bold">Furniture Design</p>
-      <Menu />
-    </div>
+    <header className={style}>
+      <p className="text-2xl font-bold">Furniture Design</p>
+      <button
+        onClick={() => changeMenuOpenStatus()}
+        className="opacity-100 z-20 bg-black"
+      >
+        <Menu />
+      </button>
+    </header>
   );
 }
 
-function Gallery() {
+function Gallery({ isDesktopOrLaptop }: { isDesktopOrLaptop: boolean }) {
+  const style = isDesktopOrLaptop
+    ? "grid gap-[35px] grid-cols-4"
+    : "grid gap-[35px] grid-cols-2";
   return (
-    <div className="flex gap-[16px] flex-wrap">
+    <div className={style}>
       <GalleryCard>
-        <Gallery1 className="w-[210px] h-[210px]" />
+        <Gallery1 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery2 className="w-[210px] h-[210px]" />
+        <Gallery2 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery3 className="w-[210px] h-[210px]" />
+        <Gallery3 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery4 className="w-[210px] h-[210px]" />
+        <Gallery4 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery5 className="w-[210px] h-[210px]" />
+        <Gallery5 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery6 className="w-[210px] h-[210px]" />
+        <Gallery6 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery7 className="w-[210px] h-[210px]" />
+        <Gallery7 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery8 className="w-[210px] h-[210px]" />
+        <Gallery8 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery1 className="w-[210px] h-[210px]" />
+        <Gallery1 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery2 className="w-[210px] h-[210px]" />
+        <Gallery2 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery3 className="w-[210px] h-[210px]" />
+        <Gallery3 className="w-auto h-auto" />
       </GalleryCard>
       <GalleryCard>
-        <Gallery4 className="w-[210px] h-[210px]" />
+        <Gallery4 className="w-auto h-auto" />
       </GalleryCard>
     </div>
   );
