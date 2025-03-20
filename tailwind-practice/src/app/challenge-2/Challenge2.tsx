@@ -33,7 +33,22 @@ export default function Challenge2() {
 }
 
 function MenuOpenBackGround() {
-  return <div className="bg-black fixed opacity-80 w-full h-full z-10"></div>;
+  return (
+    <div className="bg-black fixed opacity-80 w-full h-full z-10 px-[8%] py-[2%]">
+      <div className="flex items-start text-left">
+        <nav>
+          <ul className="text-white space-y-4">
+            <li>Product</li>
+            <li>
+              <a href="/challenge-2/About">About</a>
+            </li>
+            <li>Company</li>
+            <li>Contact</li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
 }
 
 function Header({
@@ -52,7 +67,7 @@ function Header({
       <p className="text-2xl font-bold">Furniture Design</p>
       <button
         onClick={() => changeMenuOpenStatus()}
-        className="opacity-100 z-20 bg-black"
+        className="opacity-100 z-20 "
       >
         <Menu />
       </button>
